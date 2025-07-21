@@ -19,6 +19,9 @@ public class LoanProvider {
     @Column(length = 100)
     private String city;
 
+    @Column(name = "agent_id")
+    private Long agentId;
+
     @Column(length = 100)
     private String state;
 

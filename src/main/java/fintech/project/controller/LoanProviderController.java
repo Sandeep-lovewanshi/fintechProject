@@ -45,7 +45,6 @@ public class LoanProviderController {
 
         }
     }
-
     @DeleteMapping("delete/{id}")
     public ResponseEntity<String> deleteLoanProvider(@PathVariable Long id) {
         try {

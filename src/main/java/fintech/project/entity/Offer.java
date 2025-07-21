@@ -12,11 +12,8 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "agent_id", nullable = false)
-    private Long agentId;
-
-    @Column(name = "provider_id", nullable = false)
-    private Long providerId;
+    @Column(name = "loan_provider_id", nullable = false)
+    private Long loanProviderId;
 
     @Column(name = "enquiry_id", nullable = false)
     private Long enquiryId;

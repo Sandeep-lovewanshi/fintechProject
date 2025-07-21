@@ -4,7 +4,7 @@ import fintech.project.entity.Customer;
 
 public interface CustomerService  {
 
-        Customer registerCustomer(Customer customer);
-        Customer loginCustomer(String email, String password);
+        Customer loginCustomer(String email);
+        public boolean submitVerifyOtp(String email, String otp);
     }
 

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class LoanProviderService implements fintech.project.service.LoanProviderService {
+public class LoanProviderServiceImpl implements fintech.project.service.LoanProviderService {
 
     @Autowired
     private LoanProviderRepository loanProviderRepository;

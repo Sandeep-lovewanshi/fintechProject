@@ -21,6 +21,9 @@ public class Agent {
     @Column(unique = true, nullable = false, length = 150)
     private String email;
 
+    @Column(length = 20)
+    private String role;
+
     @Column(name = "phone_number", nullable = false, length = 20)
     private String phoneNumber;
 

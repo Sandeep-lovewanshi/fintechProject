@@ -5,7 +5,6 @@ import fintech.project.service.OfferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -16,17 +15,6 @@ public class OfferController {
     @Autowired
     private OfferService offerService;
 
-    @PostMapping("/add")
-    public ResponseEntity<?> addOffer(@RequestBody Offer offer) {
-        Offer savedOffer = offerService.addOffer(offer);
-        return ResponseEntity.ok(savedOffer);
-    }
-
-    @GetMapping("/getAll")
-    public ResponseEntity<?> getAllOffers() {
-        List<Offer> offers = offerService.getAllOffer();
-        return ResponseEntity.ok(offers);
-    }
 
     @GetMapping("/getById/{id}")
     public ResponseEntity<Offer> getOfferById(@PathVariable Long id) {
@@ -49,4 +37,27 @@ public class OfferController {
         }
     }
 
+    // show three  offers
+    @GetMapping("/getOffersByEnquiryId/{enquiryId}")
+    public ResponseEntity<List<Offer>> getOffersByEnquiryId(@PathVariable Long enquiryId) {
+        List<Offer> offers = offerService.getOffersByEnquiryId(enquiryId);
+        return ResponseEntity.ok(offers);
+    }
+    // accepted one offer
+    @GetMapping("/acceptOffer/{offerId}")
+    public ResponseEntity<?> acceptCustomerOffer(@PathVariable Long offerId) {
+        Offer selected=offerService.acceptOffer(offerId);
+        return ResponseEntity.ok(offerId+" Offer Selected by customer");
+    }
+
+    // admin fetch 3 offer on basis of customer enquiry
+    @PostMapping("/assignOffersToCustomerBasedOnEnquiry/{enquiryId}")
+    public ResponseEntity<List<Offer>> assignOffersToCustomerBasedOnEnquiry(
+            @PathVariable Long enquiryId,
+            @RequestBody List<Offer> offerList) {
+
+        List<Offer> list = offerService.assignOffersToCustomerBasedOnEnquiry(offerList, enquiryId);
+        return ResponseEntity.ok(list);
+    }
+   
 }

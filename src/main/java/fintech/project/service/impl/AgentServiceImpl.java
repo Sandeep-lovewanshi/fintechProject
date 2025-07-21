@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class AgentService implements fintech.project.service.AgentService {
+public class AgentServiceImpl implements fintech.project.service.AgentService {
 
     @Autowired
     private AgentRepository agentRepository;
@@ -20,25 +20,20 @@ public class AgentService implements fintech.project.service.AgentService {
         if (existingAgent.isPresent()) {
             throw new RuntimeException("Agent with this email already exists.");
         }
-
         return agentRepository.save(agent);
     }
 
     @Override
     public Agent loginAgent(String email, String password) {
-
         Optional<Agent> agentOpt = agentRepository.findByEmail(email);
-
         if (agentOpt.isEmpty()) {
             throw new RuntimeException("Agent not found.");
         }
-
         Agent agent = agentOpt.get();
 
         if (!agent.getPassword().equals(password)) {
             throw new RuntimeException("Invalid password.");
         }
-
         return agent;
     }
 }
